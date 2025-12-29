@@ -18,8 +18,15 @@ class GoogleDriveService:
     ]
 
     @staticmethod
-    def get_flow():
-        """Cấu hình luồng đăng nhập Google"""
+    def get_flow(scopes=None):
+        """
+        Cấu hình luồng đăng nhập Google.
+        - scopes=None: Dùng mặc định (cho chức năng kết nối Drive).
+        - scopes=[...]: Dùng danh sách truyền vào (cho chức năng Login).
+        """
+
+        target_scopes = scopes if scopes else GoogleDriveService.SCOPES
+
         return google_auth_oauthlib.flow.Flow.from_client_config(
             {
                 "web": {
@@ -29,7 +36,7 @@ class GoogleDriveService:
                     "token_uri": "https://oauth2.googleapis.com/token",
                 }
             },
-            scopes=GoogleDriveService.SCOPES,  # Sử dụng biến chung ở đây
+            scopes=target_scopes,  
         )
 
     @staticmethod

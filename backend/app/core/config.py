@@ -7,8 +7,11 @@ class Settings(BaseSettings):
     SUPABASE_KEY: str
     GOOGLE_CLIENT_ID: str
     GOOGLE_CLIENT_SECRET: str
-    GOOGLE_REDIRECT_URI: str
+    GOOGLE_REDIRECT_URI: str # Callback cho Drive: .../api/v1/google/callback
+    GOOGLE_REDIRECT_URI_LOGIN: str # Callback cho Auth: .../api/v1/auth/callback
     SECRET_KEY: str
+    ALGORITHM: str = "HS256"
+    FRONTEND_URL: str = "http://localhost:5173"
 
     # Cách khai báo chuẩn cho Pydantic v2
     model_config = SettingsConfigDict(

@@ -5,6 +5,7 @@ from app.services.google_service import GoogleDriveService, supabase
 from app.core.config import settings
 from google.oauth2 import id_token
 from google.auth.transport import requests as google_requests
+from fastapi.responses import RedirectResponse
 
 # Cấu hình cho môi trường Local
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
@@ -64,12 +65,11 @@ async def auth_callback(code: str):
             .execute()
         )
 
-        return {
-            "status": "success",
-            "account": user_email,
-            "refresh_token_saved": bool(creds.refresh_token),
-            "db_response": "Data sent to Supabase",
-        }
+        return RedirectResponse(
+            url=f"{settings.FRONTEND_URL}/admin/accounts?status=success"
+        )
 
     except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Lỗi Callback: {str(e)}")
+        return RedirectResponse(
+            url=f"{settings.FRONTEND_URL}/admin/accounts?error={str(e)}"
+        )
