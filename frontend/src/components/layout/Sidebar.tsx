@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { authService } from "../../services/authService";
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Modal } from "../ui/Modal";
 export default function Sidebar() {
   const location = useLocation();

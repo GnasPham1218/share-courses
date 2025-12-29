@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { jwtDecode } from "jwt-decode";
 
 // 1. Định nghĩa kiểu dữ liệu cho Token để tránh dùng 'any'
@@ -51,7 +51,7 @@ export default function Header() {
         </div>
 
         {/* Avatar Circle */}
-        <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md border-2 border-white ring-1 ring-gray-100">
+        <div className="h-10 w-10 rounded-full bg-linear-to-tr from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md border-2 border-white ring-1 ring-gray-100">
           {email.charAt(0).toUpperCase()}
         </div>
       </div>
